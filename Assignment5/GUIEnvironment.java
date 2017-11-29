@@ -1,6 +1,6 @@
 import java.awt.*;
 import java.util.HashMap;
-
+import java.util.Random;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.event.*;
@@ -12,11 +12,11 @@ import java.awt.event.*;
  */
 public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
 {
+    private Random random;
     private Container contents;
     private HashMap<Player, Integer> map;
     private ArrayList<JPanel> rooms;
     private ArrayList<Player> players;
-    private Player player;
     private Player currentplayer;
     private Color[] colors = {Color.BLACK, Color.BLUE, Color.GREEN, Color.YELLOW, Color.WHITE, Color.PINK, Color.ORANGE, Color.RED, Color.GRAY};
     private int numberOfRooms;
@@ -25,8 +25,10 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
      */
     public GUIEnvironment()
     {
+        random = new Random();
         map = new HashMap<Player, Integer>();
         rooms = new ArrayList<JPanel>();
+        players = new ArrayList<Player>();
         numberOfRooms = 9;
         createEnvironment();
     }
@@ -46,13 +48,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
             rooms.add(panel);
             contents.add(panel);
         }
-        player = new Player("Player1", 1);
-        player.addMouseListener(this);
-        player.setBackground(Color.BLACK);
-        Player player2 = new Player("Player2", 2);
-        player2.addMouseListener(this);
-        addPlayerToRoom(player2.getRoom(), player2);
-        addPlayerToRoom(player.getRoom(), player);
+        itsRainingMen();
         
         setSize(300, 300);
         setLocationRelativeTo(null); //Centers window
@@ -62,18 +58,25 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     /**
      * Adds player to a room
      * @param roomNumber - the room a player to add a player to
+     * @param p - Player to add to room
      */
     public void addPlayerToRoom(int roomNumber, Player p) {
         (rooms.get(roomNumber)).add(p);
     }
     
     /**
-     * 
-     * 
+     * Adds players and adds them to rooms
      */
-    public void playerOnline()
+    public void itsRainingMen()
     {
-        
+        for(int i = 0; i < 5; i++) {
+            int c = random.nextInt(8);
+            Player player = new Player("Player"+(i+1), c);
+            player.addMouseListener(this);
+            player.setBackground(Color.BLACK);
+            players.add(player);
+            addPlayerToRoom(player.getRoom(),player);
+        }
     }
     
     /**
@@ -121,7 +124,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         if((e.getSource()) instanceof Player) {
             currentplayer = (Player) (e.getSource());
             (rooms.get(currentplayer.getRoom())).remove(currentplayer);
-            player.setRoom(currentplayer.getRoom()+2);
+            currentplayer.setRoom(currentplayer.getRoom()+2);
             
             (rooms.get(currentplayer.getRoom())).add(currentplayer);
             
