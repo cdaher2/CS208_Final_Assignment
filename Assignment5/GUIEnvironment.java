@@ -15,7 +15,9 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     private Container contents;
     private HashMap<Player, Integer> map;
     private ArrayList<JPanel> rooms;
-    Player player;
+    private ArrayList<Player> players;
+    private Player player;
+    private Player currentplayer;
     private Color[] colors = {Color.BLACK, Color.BLUE, Color.GREEN, Color.YELLOW, Color.WHITE, Color.PINK, Color.ORANGE, Color.RED, Color.GRAY};
     private int numberOfRooms;
     /**
@@ -49,8 +51,8 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         player.setBackground(Color.BLACK);
         Player player2 = new Player("Player2", 2);
         player2.addMouseListener(this);
-        addPlayer(player2.getRoom(), player2);
-        addPlayer(player.getRoom(), player);
+        addPlayerToRoom(player2.getRoom(), player2);
+        addPlayerToRoom(player.getRoom(), player);
         
         setSize(300, 300);
         setLocationRelativeTo(null); //Centers window
@@ -61,10 +63,18 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
      * Adds player to a room
      * @param roomNumber - the room a player to add a player to
      */
-    public void addPlayer(int roomNumber, Player p) {
+    public void addPlayerToRoom(int roomNumber, Player p) {
         (rooms.get(roomNumber)).add(p);
     }
     
+    /**
+     * 
+     * 
+     */
+    public void playerOnline()
+    {
+        
+    }
     
     /**
      * W, A, S, and D used
@@ -108,12 +118,12 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     @Override
     public void mouseClicked(MouseEvent e) {
         
-        if((e.getSource())==player) {
+        if((e.getSource()) instanceof Player) {
+            currentplayer = (Player) (e.getSource());
+            (rooms.get(currentplayer.getRoom())).remove(currentplayer);
+            player.setRoom(currentplayer.getRoom()+2);
             
-            (rooms.get(player.getRoom())).remove(player);
-            player.setRoom(player.getRoom()+1);
-            
-            (rooms.get(player.getRoom())).add(player);
+            (rooms.get(currentplayer.getRoom())).add(currentplayer);
             
             repaint();
         }
