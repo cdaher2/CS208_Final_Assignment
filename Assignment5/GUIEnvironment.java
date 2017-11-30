@@ -109,7 +109,6 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     @Override
     public void mouseReleased(MouseEvent e) {}
     
-    
     /**
      * W, A, S, and D used
      * @param e - key being pressed

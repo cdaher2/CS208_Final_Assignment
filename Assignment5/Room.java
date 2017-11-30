@@ -33,6 +33,7 @@ public class Room extends JPanel
     public int getNumber() {
         return number;
     }
+    
     /**
      * Sets the room number
      * @param n - The desired room number
