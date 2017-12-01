@@ -32,6 +32,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         rooms = new ArrayList<Room>();
         players = new ArrayList<Player>();
         createEnvironment();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     /**
