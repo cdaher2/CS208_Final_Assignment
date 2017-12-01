@@ -1,3 +1,4 @@
+
 import javax.swing.JPanel;
 /**
  * Write a description of class Room here.
@@ -8,7 +9,8 @@ import javax.swing.JPanel;
 public class Room extends JPanel
 {
     private int number;
-
+    private MHashTable<String, Player>;
+    
     /**
      * Constructor for objects of class Room
      */
@@ -41,4 +43,7 @@ public class Room extends JPanel
     protected void setNumber(int n) {
         number = n;
     }
+    
+    
+    
 }
