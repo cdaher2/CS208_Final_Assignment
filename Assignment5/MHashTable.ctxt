@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=MHashTable
+comment1.params=
+comment1.target=MHashTable()
+comment2.params=k\ v
+comment2.target=void\ put(java.lang.Object,\ java.lang.Object)
+numComments=3

@@ -20,6 +20,8 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     private Player currentplayer;
     private int currentPositionX;
     private int currentPositionY;
+    private int widthOfFrame;
+    private int heightOfFrame;
     private Color[] colors = {Color.BLACK, Color.BLUE, Color.GREEN, Color.YELLOW, Color.WHITE, Color.PINK, Color.ORANGE, Color.RED, Color.GRAY};
     private Room currentRoom;
     /**
@@ -32,6 +34,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         rooms = new ArrayList<Room>();
         players = new ArrayList<Player>();
         createEnvironment();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     /**
@@ -52,7 +55,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         itsRainingMen();
         
         addKeyListener(this);
-        setSize(300, 300);
+        setSize(315, 340);
         setLocationRelativeTo(null); //Centers window
         setVisible(true);
     }
