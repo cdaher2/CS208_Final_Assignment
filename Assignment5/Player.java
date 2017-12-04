@@ -3,14 +3,17 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.Date;
 /**
  * Write a description of class Player here.
  *
- * @author (Catherine Denis)
+ * @author (Catherine Denis) & Christian Daher
  * @version (0.1)
  */
 public class Player extends JPanel
 {
+	private int hash;
+	private int timestamp = (int)new Date().getTime();
     private String name;
     private int room;
     private Color color;
@@ -23,6 +26,7 @@ public class Player extends JPanel
         name = "Player";
         room = 1;
         color = defaultColor;
+        this.makeHash();
     }
 
     /**
@@ -37,6 +41,7 @@ public class Player extends JPanel
         setSize(20,20);
         color = defaultColor;
         setBackground(new Color(145, 32, 121,0));
+        this.makeHash();
     }
     
     /**
@@ -101,4 +106,18 @@ public class Player extends JPanel
         super.paintComponent(g);
         drawAThing(g);
     }
+    
+    private void makeHash() {
+    	hash = 1;
+    	for (int i = 0; i < this.getName().length(); i++) {
+    		hash = hash + (timestamp * (int)this.getName().charAt(i));
+    	}
+    	hash = Math.abs(hash);
+    }
+    
+    @Override
+    public int hashCode() {
+    	return hash;
+    }
+    
 }
