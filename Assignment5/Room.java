@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class Room extends JPanel
 {
     private int number;
-    private MHashTable<String, Player>;
+    private MHashTable<String, Player> hTable;
     
     /**
      * Constructor for objects of class Room
