@@ -50,7 +50,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
             rooms.add(panel);
             contents.add(panel);
         }
-        itsRainingMen();
+        fillRoomsWithPlayers();
         
         addKeyListener(this);
         setSize(300, 300);
@@ -68,9 +68,9 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     }
     
     /**
-     * Adds players and adds them to rooms
+     * Creates 5 players and adds them to rooms
      */
-    public void itsRainingMen()
+    public void fillRoomsWithPlayers()
     {
         for(int i = 0; i < 5; i++) {
             Player player = new Player("Player"+(i+1), i);
@@ -83,7 +83,11 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         currentplayer = players.get(0);
     }
     
-    
+    /**
+     * The player can be selected via mouse click
+     * The room the player is in can be selected via mouse click
+     * @param e - The mouse being clicked
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         
@@ -111,7 +115,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     public void mouseReleased(MouseEvent e) {}
     
     /**
-     * W, A, S, and D used
+     * W, A, S, and D used to control player
      * @param e - key being pressed
      */
     @Override

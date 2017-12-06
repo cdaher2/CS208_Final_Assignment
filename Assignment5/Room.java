@@ -1,4 +1,3 @@
-
 import javax.swing.JPanel;
 /**
  * Write a description of class Room here.
@@ -43,7 +42,4 @@ public class Room extends JPanel
     protected void setNumber(int n) {
         number = n;
     }
-    
-    
-    
 }

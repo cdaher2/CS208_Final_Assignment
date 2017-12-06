@@ -1,5 +1,4 @@
 import javax.swing.JPanel;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -12,8 +11,8 @@ import java.util.Date;
  */
 public class Player extends JPanel
 {
-	private int hash;
-	private int timestamp = (int)new Date().getTime();
+    private int hash;
+    private int timestamp = (int)new Date().getTime();
     private String name;
     private int room;
     private Color color;
@@ -77,12 +76,13 @@ public class Player extends JPanel
     }
     
     /**
-     * 
+     * Sets the player's color to a new color
+     * @param c - New color desired
      */
     public void setColor(Color c) {color = c;}
     
     /**
-     * 
+     * Sets the player's color to the default color
      */
     public void setDefaultColor() {color = defaultColor;}
     
@@ -97,6 +97,7 @@ public class Player extends JPanel
         g2d.fillOval(0,0,20,20);
         getInsets().set(0, 0, 0, 0);
     }
+    
     /**
      * Paints the graphical components of Resizable Circle
      * @param g - Graphical element
@@ -108,16 +109,16 @@ public class Player extends JPanel
     }
     
     private void makeHash() {
-    	hash = 1;
-    	for (int i = 0; i < this.getName().length(); i++) {
-    		hash = hash + (timestamp * (int)this.getName().charAt(i));
-    	}
-    	hash = Math.abs(hash);
+        hash = 1;
+        for (int i = 0; i < this.getName().length(); i++) {
+            hash = hash + (timestamp * (int)this.getName().charAt(i));
+        }
+        hash = Math.abs(hash);
     }
     
     @Override
     public int hashCode() {
-    	return hash;
+        return hash;
     }
     
 }
