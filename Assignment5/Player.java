@@ -15,6 +15,8 @@ public class Player extends JPanel
     private int timestamp = (int)new Date().getTime();
     private String name;
     private int room;
+    private int xCord;
+    private int yCord;
     private Color color;
     private Color defaultColor = new Color(145, 32, 121);
     /**
@@ -24,6 +26,9 @@ public class Player extends JPanel
     {
         name = "Player";
         room = 1;
+        setSize(20,20);
+        xCord = 0;
+        yCord = 0;
         color = defaultColor;
         this.makeHash();
     }
@@ -38,6 +43,8 @@ public class Player extends JPanel
         this.name = name;
         this.room = room;
         setSize(20,20);
+        xCord = 0;
+        yCord = 0;
         color = defaultColor;
         setBackground(new Color(145, 32, 121,0));
         this.makeHash();
@@ -85,6 +92,14 @@ public class Player extends JPanel
      * Sets the player's color to the default color
      */
     public void setDefaultColor() {color = defaultColor;}
+    
+    public int getX(){return xCord;}
+    
+    public void setX(int x){xCord = x;}
+    
+    public int getY(){return yCord;}
+    
+    public void setY(int y){yCord = y;}
     
     /**
      * Draws the shape of the circle

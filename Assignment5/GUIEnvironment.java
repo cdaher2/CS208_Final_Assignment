@@ -125,12 +125,14 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         if(keyCode == KeyEvent.VK_W) {
             currentPositionY = currentPositionY - 5;
             //needs to have boundaries
-            currentplayer.setBounds(currentPositionX,currentPositionY,20,20);
+            currentplayer.setY(currentPositionY);
+            currentplayer.setBounds(currentplayer.getX(),currentplayer.getY(),20,20);
             repaint();
         }
         else if(keyCode == KeyEvent.VK_D) {
             currentPositionX = currentPositionX + 5;
-            currentplayer.setBounds(currentPositionX,currentPositionY,20,20);
+            currentplayer.setX(currentPositionX);
+            currentplayer.setBounds(currentplayer.getX(),currentplayer.getY(),20,20);
             repaint();
         }
         else {
@@ -138,12 +140,14 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         }
         if(keyCode == KeyEvent.VK_A) {
             currentPositionX = currentPositionX - 5;
-            currentplayer.setBounds(currentPositionX,currentPositionY,20,20);
+            currentplayer.setX(currentPositionX);
+            currentplayer.setBounds(currentplayer.getX(),currentplayer.getY(),20,20);
             repaint();
         }
         else if(keyCode == KeyEvent.VK_S) {
             currentPositionY = currentPositionY + 5;
-            currentplayer.setBounds(currentPositionX,currentPositionY,20,20);
+            currentplayer.setY(currentPositionY);
+            currentplayer.setBounds(currentplayer.getX(),currentplayer.getY(),20,20);
             repaint();
         }
         else {

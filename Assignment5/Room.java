@@ -42,4 +42,5 @@ public class Room extends JPanel
     protected void setNumber(int n) {
         number = n;
     }
+    
 }
