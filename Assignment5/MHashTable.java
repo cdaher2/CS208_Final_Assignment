@@ -7,8 +7,8 @@
  */
 
 import java.util.LinkedList;
-
-public class MHashTable<K, V> {
+import java.util.Hashtable;
+public class MHashTable<K, V>  extends Hashtable<K, V>{
 
     private Node<K, V>[] master;
     private int CAPACITY = 101;
@@ -17,7 +17,7 @@ public class MHashTable<K, V> {
         master = new Node[CAPACITY];
     }
     
-    public void put(K k, V v) {
+    public void place(K k, V v) {
         int i = k.hashCode() % CAPACITY;
         if (master[i] == null) {
             master[k.hashCode() % CAPACITY] = new Node<K, V>(k, v);
@@ -34,7 +34,7 @@ public class MHashTable<K, V> {
         }
     }
 
-    public V get(K k) {
+    public V getValue(K k) {
         V v = null;
         Node<K, V> temp;
         int i = k.hashCode() % CAPACITY;
