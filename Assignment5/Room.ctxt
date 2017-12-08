@@ -15,5 +15,5 @@ comment4.target=void\ setNumber(int)
 comment4.text=\r\n\ Sets\ the\ room\ number\r\n\ @param\ n\ -\ The\ desired\ room\ number\r\n
 comment5.params=room
 comment5.target=boolean\ equals(Room)
-comment5.text=\r\n\ \r\n
+comment5.text=\r\n\ Returns\ whether\ or\ not\ this\ room\ is\ the\ same\ as\ another\ room\r\n\ @return\ -\ boolean\ value\ true\ or\ false\r\n
 numComments=6

@@ -163,7 +163,8 @@ public class Player extends JPanel
     }
     
     /**
-     * 
+     * Returns whether or not this player is the same as another player
+     * @return - boolean value true or false
      */
     public boolean equals(Player play) {
         if(play instanceof Player){

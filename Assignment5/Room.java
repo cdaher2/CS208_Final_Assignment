@@ -44,7 +44,8 @@ public class Room extends JPanel
     }
     
     /**
-     * 
+     * Returns whether or not this room is the same as another room
+     * @return - boolean value true or false
      */
     public boolean equals(Room room) {
         if(room instanceof Room){
