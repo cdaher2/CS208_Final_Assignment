@@ -29,7 +29,6 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
      */
     public GUIEnvironment()
     {
-        random = new Random();
         map = new HashMap<Player, Integer>();
         rooms = new ArrayList<Room>();
         players = new ArrayList<Player>();
@@ -48,6 +47,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
             Room panel = new Room(i);
             panel.setLayout(null);
             panel.addMouseListener(this);
+            panel.getInnerBounds().addMouseListener(this);
             panel.setBackground(colors[i]);
             rooms.add(panel);
             contents.add(panel);
@@ -66,7 +66,9 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
      * @param p - Player to add to room
      */
     public void addPlayerToRoom(int roomNumber, Player p) {
-        (rooms.get(roomNumber)).add(p);
+            p.setSize(20,20);
+        
+        (rooms.get(roomNumber)).addToInnerBounds(p);
     }
     
     /**
@@ -123,12 +125,14 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         if(keyCode == KeyEvent.VK_W) {
             currentPositionY = currentPositionY - 5;
             //needs to have boundaries
-            currentplayer.setBounds(currentPositionX,currentPositionY,20,20);
+            currentplayer.setY(currentPositionY);
+            currentplayer.setLocation(currentplayer.getX(),currentplayer.getY());
             repaint();
         }
         else if(keyCode == KeyEvent.VK_D) {
             currentPositionX = currentPositionX + 5;
-            currentplayer.setBounds(currentPositionX,currentPositionY,20,20);
+            currentplayer.setX(currentPositionX);
+            currentplayer.setLocation(currentplayer.getX(),currentplayer.getY());
             repaint();
         }
         else {
@@ -136,12 +140,14 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         }
         if(keyCode == KeyEvent.VK_A) {
             currentPositionX = currentPositionX - 5;
-            currentplayer.setBounds(currentPositionX,currentPositionY,20,20);
+            currentplayer.setX(currentPositionX);
+            currentplayer.setLocation(currentplayer.getX(),currentplayer.getY());
             repaint();
         }
         else if(keyCode == KeyEvent.VK_S) {
             currentPositionY = currentPositionY + 5;
-            currentplayer.setBounds(currentPositionX,currentPositionY,20,20);
+            currentplayer.setY(currentPositionY);
+            currentplayer.setLocation(currentplayer.getX(),currentplayer.getY());
             repaint();
         }
         else {

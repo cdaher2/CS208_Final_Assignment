@@ -6,7 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.image.BufferedImage;
+import javax.swing.BoxLayout;
 import java.io.*;
+import javax.swing.JComponent;
 import javax.imageio.ImageIO;
 /**
  * Write a description of class Room here.
@@ -16,6 +18,7 @@ import javax.imageio.ImageIO;
  */
 public class Room extends JPanel
 {
+    private Color transparent = new Color(34,23,42,0);
     protected class Door extends JPanel
     {
         private String direction;
@@ -28,7 +31,7 @@ public class Room extends JPanel
             image = new ImageIcon("leftdoor.png");
             setFile("leftdoor.png");
             label = new JLabel(image);
-            setBackground(new Color(23, 2, 34, 0));
+            setBackground(transparent);
             //setBounds(0, 0, 22, 22);
         }
         
@@ -37,7 +40,7 @@ public class Room extends JPanel
             direction = p;
             image = new ImageIcon();
             label = new JLabel(image);
-            setBackground(new Color(23, 2, 34, 0));
+            setBackground(transparent);
             //setBounds(0, 0, 22, 22);
         }
         
@@ -102,6 +105,7 @@ public class Room extends JPanel
     }
     private ImageIcon wall;
     private URL file;
+    private JPanel inner;
     private int number;
     private JLabel label;
     private MHashTable<String, Player> a;
@@ -121,7 +125,13 @@ public class Room extends JPanel
         label.setBounds(0, 0, 100, 100);
         add(label);
         
-        setSize(100, 100);
+        
+        //inner part of room
+        inner = new JPanel();
+        inner.setBackground(transparent);
+        inner.setSize(72,72);
+        inner.setLocation(14,14);
+        add(inner);
     }
 
     /**
@@ -141,7 +151,13 @@ public class Room extends JPanel
         label.setLayout(null);
         label.setBounds(0, 0, 100, 100);
         add(label);
-        //setSize(100, 100);
+        
+        //Inner part of room
+        inner = new JPanel();
+        inner.setBackground(transparent);
+        inner.setSize(72,72);
+        inner.setLocation(14,14);
+        add(inner);
     }
     
     /**
@@ -160,7 +176,29 @@ public class Room extends JPanel
         number = n;
     }
     
-    public URL getFile() {return file;}
+    /**
+     * Returns the file being used for walls
+     * @return - URL of file
+     */
+    public URL getFile() {
+        return file;
+    }
+    
+    /**
+     * Adds a JPanel object to the inner part of Room
+     * @param p - JPanel object
+     */
+    public void addToInnerBounds(JPanel p) {
+        inner.add(p);
+    }
+    
+    /**
+     * Returns the inner JPanel object
+     * @return - inner JPanel
+     */
+    public JPanel getInnerBounds() {
+        return inner;
+    }
     
     /**
      * Sets the image displayed
@@ -177,5 +215,17 @@ public class Room extends JPanel
         {
             e.printStackTrace();
         }
+    }
+    
+    /**
+     * Returns whether or not this room is the same as another room
+     * @return - boolean value true or false
+     */
+    public boolean equals(Room room) {
+        if(room instanceof Room){
+            if(this.number == room.number)
+                { return true; }
+        }
+        return false;
     }
 }
