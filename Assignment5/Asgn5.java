@@ -1,7 +1,8 @@
 
 public class Asgn5 {
     public static void main(String[] args) throws InterruptedException {
-    	//GUIEnvironment g = new GUIEnvironment();
+    	GUIEnvironment g = new GUIEnvironment();
+    	RockPaperScissors rps = new RockPaperScissors(g);
     	MHashTable<Player, Player> mh = new MHashTable();
     	Player p1 = new Player("Andre", 0);
     	Player p2 = new Player("Charles", 0);

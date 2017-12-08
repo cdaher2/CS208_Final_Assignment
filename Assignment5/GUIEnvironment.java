@@ -169,7 +169,6 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     
     public void setResult(int r) {
     	rpsResult = r;
-    	System.out.println(rpsResult);
     }
     
 }
