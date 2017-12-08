@@ -6,8 +6,15 @@
  * @author Christian Daher
  */
 
-import java.util.LinkedList;
 public class MHashTable<K, V>{
+	
+	/**
+	 * A simple Node data class containing generic fields for keys and values
+	 * @author Christian Daher
+	 *
+	 * @param <K> key
+	 * @param <V> value
+	 */
     protected static class Node<K, V> {
         public int key;
         public V value;
@@ -21,10 +28,28 @@ public class MHashTable<K, V>{
     private Node<K, V>[] master;
     private int CAPACITY = 101;
     
+    /**
+     * Initializes the master array with the default capacity
+     */
     public MHashTable(){
         master = new Node[CAPACITY];
     }
     
+    /**
+     * Initializes the master array with an externally defined capacity
+     * @param c capacity
+     */
+    public MHashTable(int c) {
+    	CAPACITY = c + 1;
+    	master = new Node[CAPACITY];
+    }
+    
+    /**
+     * Adds a value/key pair to the MHashTable
+     * Handles collisions through linear probing
+     * @param k key
+     * @param v value
+     */
     public void put(K k, V v) {
         int i = k.hashCode() % CAPACITY;
         if (master[i] == null) {
@@ -41,7 +66,13 @@ public class MHashTable<K, V>{
             }
         }
     }
-
+    
+    
+    /**
+     * Takes a key and returns the corresponding value
+     * @param k key
+     * @return value
+     */
     public V get(K k) {
         V v = null;
         Node<K, V> temp;
@@ -58,5 +89,16 @@ public class MHashTable<K, V>{
         return v;
     }
 
+    /**
+     * Takes a key, sets the corresponding value to null, and returns the value
+     * @param k key
+     * @return value that has just been removed
+     */
+    public V remove(K k) {
+    	V temp = get(k);
+        int i = k.hashCode() % CAPACITY;
+        master[k.hashCode() % CAPACITY] = null;
+    	return temp;
+    }
     
 }
