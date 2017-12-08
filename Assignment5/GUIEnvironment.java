@@ -20,6 +20,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     private ArrayList<Player> players;
     private JButton challenge;
     private Player currentplayer;
+    private Player challenger;
     private int currentPositionX;
     private int currentPositionY;
     private Color[] colors = {Color.BLACK, Color.BLUE, Color.GREEN, Color.YELLOW, Color.WHITE, Color.PINK, Color.ORANGE, Color.RED, Color.GRAY};
@@ -92,9 +93,10 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
             }
         }
         
-        if(p.equals(currentplayer))
+        if(p.equals(currentplayer)) {
             currentplayer = players.get(0);
-            
+            currentplayer.setColor(new Color(193,23,120));
+        }
     }
     
     /**
@@ -111,8 +113,9 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
             currentPositionY = 0;
         }
         currentplayer = players.get(0);
+        currentplayer.setToSelectColor();
     }
-    private Player challenger;
+    
     /**
      * 
      */
@@ -125,13 +128,27 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     }
     
     /**
+     * Checks to see if any other players are near currentplayer
+     */
+    public void detectPlayersInRange() {
+        for(Player player : players) {
+            if(currentplayer.equals(player) == false && currentplayer.getRoom() == player.getRoom()) {
+                if((currentplayer.getX() >= player.getX() - 20)
+                    && (currentplayer.getX() <= player.getX() + 20)
+                    && (currentplayer.getY() >= player.getY() - 20)
+                    && (currentplayer.getY() <= player.getY() + 20)) {
+                    challengePlayer(player);
+                }
+            }
+        }
+    }
+    /**
      * Removes a player based on game results
      */
     public void finishHim() {
         switch(rpsResult) {
             case 0:
                 //do nothing
-                System.out.println("Nothing to see here");
                 break;
             case 1:
                 //current player won, remove p
@@ -143,14 +160,16 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
                 break;
             default:
                 //do nothing
-                System.out.println("Nothing to see here");
+                break;
         }
     }
    
-    
+    /**
+     * Sets result of rock, paper, scissors game
+     * @param r - numeric value of result
+     */
     public void setResult(int r) {
         rpsResult = r;
-        System.out.println("Result: " + r);
     }
     
     /**
@@ -163,8 +182,10 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         this.requestFocus();
         if((e.getSource()) instanceof Player) {
             currentplayer.setDefaultColor();
-            currentplayer = (Player) (e.getSource()); //assign currentplayer to player clicked
-            currentplayer.setColor(new Color(34,121,23));
+            currentplayer = (Player) (e.getSource());//assign currentplayer to player clicked
+            currentPositionX = currentplayer.getX();
+            currentPositionY = currentplayer.getY();
+            currentplayer.setToSelectColor();
             repaint();
         }
         if((e.getSource()) instanceof Room) {
@@ -172,6 +193,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
             (rooms.get(currentplayer.getRoom())).remove(currentplayer);
             currentplayer.setRoom(currentRoom.getNumber());
             addPlayerToRoom(currentRoom.getNumber(), currentplayer);
+            detectPlayersInRange();
             repaint();
         }
         
@@ -197,16 +219,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     public void keyPressed(KeyEvent e)
     {
         int keyCode = e.getKeyCode();
-        for(Player player : players) {
-            if(currentplayer.equals(player) == false && currentplayer.getRoom() == player.getRoom()) {
-                if((currentplayer.getX() >= player.getX() - 20)
-                    && (currentplayer.getX() <= player.getX() + 20)
-                    && (currentplayer.getY() >= player.getY() - 20)
-                    && (currentplayer.getY() <= player.getY() + 20)) {
-                    challengePlayer(player);
-                }
-            }
-        }
+        detectPlayersInRange();
         if(keyCode == KeyEvent.VK_W) {
             currentPositionY = currentPositionY - 5;
             //needs to have boundaries

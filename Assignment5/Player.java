@@ -19,6 +19,7 @@ public class Player extends JPanel
     private int yCord;
     private Color color;
     private Color defaultColor = new Color(145, 32, 121);
+    private Color selectcolor = new Color(34,121,23);
     /**
      * Constructor for objects of class Player
      */
@@ -97,6 +98,12 @@ public class Player extends JPanel
         color = defaultColor;
     }
     
+    /**
+     * Sets the player's color to the default select color
+     */
+    public void setToSelectColor() {
+        color = selectcolor;
+    }
     /**
      * Returns the x-coordinate of the player
      */
