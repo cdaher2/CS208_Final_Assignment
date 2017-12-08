@@ -2,6 +2,7 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.*;
 import java.awt.event.*;
 /**
@@ -17,6 +18,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     private HashMap<Player, Integer> map;
     private ArrayList<Room> rooms;
     private ArrayList<Player> players;
+    private JButton challenge;
     private Player currentplayer;
     private int currentPositionX;
     private int currentPositionY;
@@ -51,6 +53,13 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
             rooms.add(panel);
             contents.add(panel);
         }
+        
+        challenge = new JButton("Challenge");
+        challenge.setLocation(0,0);
+        challenge.setSize(100,20);
+        rooms.get(0).add(challenge);
+        challenge.addMouseListener(this);
+        challenge.setVisible(false);
         fillRoomsWithPlayers();
         
         addKeyListener(this);
@@ -69,6 +78,26 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     }
     
     /**
+     * Eradicates a player from existance
+     */
+    public void removePlayer(Player p) {
+        Iterator<Player> iter = players.iterator();
+        System.out.println("Rem:" + p.getName());
+        while (iter.hasNext()) {
+            Player str = iter.next();
+            System.out.println("Nex: " + str.getName());
+            if (str.equals(p)) {
+                iter.remove();
+                rooms.get(p.getRoom()).remove(p);
+            }
+        }
+        
+        if(p.equals(currentplayer))
+            currentplayer = players.get(0);
+            
+    }
+    
+    /**
      * Creates 5 players and adds them to rooms
      */
     public void fillRoomsWithPlayers()
@@ -83,6 +112,46 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         }
         currentplayer = players.get(0);
     }
+    private Player challenger;
+    /**
+     * 
+     */
+    public void challengePlayer(Player p) {
+        challenger = p;
+        challenge.setVisible(true);
+        for(Player player : players) {
+            System.out.println("Players: " + player.getName());
+        }
+    }
+    
+    /**
+     * Removes a player based on game results
+     */
+    public void finishHim() {
+        switch(rpsResult) {
+            case 0:
+                //do nothing
+                System.out.println("Nothing to see here");
+                break;
+            case 1:
+                //current player won, remove p
+                removePlayer(challenger);
+                break;
+            case -1:
+                //current player lost, remove currentplayer
+                removePlayer(currentplayer);
+                break;
+            default:
+                //do nothing
+                System.out.println("Nothing to see here");
+        }
+    }
+   
+    
+    public void setResult(int r) {
+        rpsResult = r;
+        System.out.println("Result: " + r);
+    }
     
     /**
      * The player can be selected via mouse click
@@ -91,7 +160,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
      */
     @Override
     public void mouseClicked(MouseEvent e) {
-        
+        this.requestFocus();
         if((e.getSource()) instanceof Player) {
             currentplayer.setDefaultColor();
             currentplayer = (Player) (e.getSource()); //assign currentplayer to player clicked
@@ -104,6 +173,11 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
             currentplayer.setRoom(currentRoom.getNumber());
             addPlayerToRoom(currentRoom.getNumber(), currentplayer);
             repaint();
+        }
+        
+        if((e.getSource()).equals(challenge)) {
+            RockPaperScissors rps = new RockPaperScissors(this);
+            challenge.setVisible(false);
         }
     }
     @Override
@@ -123,6 +197,16 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     public void keyPressed(KeyEvent e)
     {
         int keyCode = e.getKeyCode();
+        for(Player player : players) {
+            if(currentplayer.equals(player) == false && currentplayer.getRoom() == player.getRoom()) {
+                if((currentplayer.getX() >= player.getX() - 20)
+                    && (currentplayer.getX() <= player.getX() + 20)
+                    && (currentplayer.getY() >= player.getY() - 20)
+                    && (currentplayer.getY() <= player.getY() + 20)) {
+                    challengePlayer(player);
+                }
+            }
+        }
         if(keyCode == KeyEvent.VK_W) {
             currentPositionY = currentPositionY - 5;
             //needs to have boundaries
@@ -166,9 +250,4 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     {
         contents.setFocusable(true);
     }
-    
-    public void setResult(int r) {
-    	rpsResult = r;
-    }
-    
 }

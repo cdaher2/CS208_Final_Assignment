@@ -65,7 +65,6 @@ public class RockPaperScissors extends JFrame implements ActionListener {
         this.add(scissors);
         this.add(ticker);
         this.add(end);
-        
     }
     
     /**
@@ -85,6 +84,7 @@ public class RockPaperScissors extends JFrame implements ActionListener {
         }
         if (a.getSource() == end) {
             this.dispose();
+            f.finishHim();
         }
         
         result = checkGame();
