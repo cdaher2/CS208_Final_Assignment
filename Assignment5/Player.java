@@ -25,7 +25,7 @@ public class Player extends JPanel
     public Player()
     {
         name = "Player";
-        room = 1;
+        room = 0;
         setSize(20,20);
         xCord = 0;
         yCord = 0;
@@ -162,4 +162,19 @@ public class Player extends JPanel
         return hash;
     }
     
+    /**
+     * 
+     */
+    public boolean equals(Player play) {
+        if(play instanceof Player){
+            if(this.name == play.name
+                && this.room == play.room
+                && this.color == play.color
+                && this.hash == play.hash
+                && this.xCord == play.xCord
+                && this.yCord == play.yCord)
+                { return true; }
+        }
+        return false;
+    }
 }

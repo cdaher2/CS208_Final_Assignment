@@ -43,4 +43,14 @@ public class Room extends JPanel
         number = n;
     }
     
+    /**
+     * 
+     */
+    public boolean equals(Room room) {
+        if(room instanceof Room){
+            if(this.number == room.number)
+                { return true; }
+        }
+        return false;
+    }
 }
