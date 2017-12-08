@@ -22,6 +22,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     private int currentPositionY;
     private Color[] colors = {Color.BLACK, Color.BLUE, Color.GREEN, Color.YELLOW, Color.WHITE, Color.PINK, Color.ORANGE, Color.RED, Color.GRAY};
     private Room currentRoom;
+    private volatile int rpsResult = -2;
     /**
      * Constructor for objects of class GUIEnvironment
      */
@@ -165,4 +166,10 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     {
         contents.setFocusable(true);
     }
+    
+    public void setResult(int r) {
+    	rpsResult = r;
+    	System.out.println(rpsResult);
+    }
+    
 }
