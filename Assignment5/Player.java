@@ -35,8 +35,8 @@ public class Player extends JPanel
 
     /**
      * Constructor for objects of class Player
-     * @param name - String desired name of the player
-     * @param room - int room number the player starts in
+     * @param name - Desired name of the player
+     * @param room - Desired room number to start in
      */
     public Player(String name, int room)
     {
@@ -52,7 +52,7 @@ public class Player extends JPanel
     
     /**
      * Gets the name of this player
-     * @return - String the name of the player
+     * @return - The name of the player
      */
     public String getName() {
         return name;
@@ -60,15 +60,15 @@ public class Player extends JPanel
     
     /**
      * Sets the player's name
-     * @param n - String desired name of player
+     * @param n - The new name of the player
      */
     public void setName(String n) {
         name = n;
     }
     
     /**
-     * Get the room number that this player is in
-     * @return - int room number
+     * Returns the room that this player is in
+     * @return - the room number
      */
     public int getRoom() {
         return room;
@@ -76,7 +76,7 @@ public class Player extends JPanel
     
     /**
      * Sets the room number that the player is in
-     * @param r - The desired room number
+     * @param r - The desired room number to place the player in
      */
     public void setRoom(int r) {
          room = r;
@@ -86,20 +86,46 @@ public class Player extends JPanel
      * Sets the player's color to a new color
      * @param c - New color desired
      */
-    public void setColor(Color c) {color = c;}
+    public void setColor(Color c) {
+        color = c;
+    }
     
     /**
      * Sets the player's color to the default color
      */
-    public void setDefaultColor() {color = defaultColor;}
+    public void setDefaultColor() {
+        color = defaultColor;
+    }
     
-    public int getX(){return xCord;}
+    /**
+     * Returns the x-coordinate of the player
+     */
+    public int getX(){
+        return xCord;
+    }
     
-    public void setX(int x){xCord = x;}
+    /**
+     * Sets the x-coordinate of the player
+     * @param x - The desired value for the player's x-coordinate
+     */
+    public void setX(int x){
+        xCord = x;
+    }
     
-    public int getY(){return yCord;}
+    /**
+     * Returns the y-coordinate of the player
+     */
+    public int getY(){
+        return yCord;
+    }
     
-    public void setY(int y){yCord = y;}
+    /**
+     * Sets the player's y-coordinate
+     * @param y - The desired y-coordinate value for the player
+     */
+    public void setY(int y){
+        yCord = y;
+    }
     
     /**
      * Draws the shape of the circle
