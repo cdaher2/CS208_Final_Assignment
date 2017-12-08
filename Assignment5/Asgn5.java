@@ -18,8 +18,9 @@ public class Asgn5 {
         Player player2 = new Player("Player2",1);
         Player player3 = new Player("Player3",2);
         
-        
-    	System.out.println(player1.hashCode() + " " + player2.hashCode());
+    	System.out.println("Player 1: " + player1.hashCode());
+    	System.out.println("Player 2: " + player2.hashCode());
+    	System.out.println("Player 3: " + player3.hashCode());
         
         Room room1 = new Room();
         Room room2 = new Room(1);
