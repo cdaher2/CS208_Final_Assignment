@@ -92,9 +92,16 @@ public class Player extends JPanel
     }
     
     /**
+     * Returns the player's current color
+     */
+    public Color getColor() {
+        return color;
+    }
+    
+    /**
      * Sets the player's color to the default color
      */
-    public void setDefaultColor() {
+    public void setToDefaultColor() {
         color = defaultColor;
     }
     

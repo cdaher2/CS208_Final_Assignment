@@ -127,7 +127,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         for(int i = 0; i < rand; i++) {
             Player player = new Player("Player"+(i+1), i);
             player.addMouseListener(this);
-            player.setColor(new Color(30*i, 34 ,100));
+            player.setColor(new Color(25*i, 34 ,100));
             players.add(player);
             addPlayerToRoom(player.getRoom(),player);
             currentPositionX = 0;
@@ -198,7 +198,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     public void mouseClicked(MouseEvent e) {
         this.requestFocus();
         if((e.getSource()) instanceof Player) {
-            currentplayer.setDefaultColor();
+            
             currentplayer = (Player) (e.getSource());
             currentPositionX = currentplayer.getX();
             currentPositionY = currentplayer.getY();
