@@ -18,7 +18,9 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     private HashMap<Player, Integer> map;
     private ArrayList<Room> rooms;
     private ArrayList<Player> players;
+    private Iterator<Player> iter;
     private JButton challenge;
+    private JLabel winner;
     private Player currentplayer;
     private Player challenger;
     private int currentPositionX;
@@ -63,6 +65,10 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         challenge.setVisible(false);
         fillRoomsWithPlayers();
         
+            winner = new JLabel();
+            winner.setSize(100,20);
+            rooms.get(4).add(winner);
+        
         addKeyListener(this);
         setSize(300, 300);
         setLocationRelativeTo(null); //Centers window
@@ -82,11 +88,9 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
      * Eradicates a player from existance
      */
     public void removePlayer(Player p) {
-        Iterator<Player> iter = players.iterator();
-        System.out.println("Rem:" + p.getName());
+        iter = players.iterator();
         while (iter.hasNext()) {
             Player str = iter.next();
-            System.out.println("Nex: " + str.getName());
             if (str.equals(p)) {
                 iter.remove();
                 rooms.get(p.getRoom()).remove(p);
@@ -96,6 +100,17 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         if(p.equals(currentplayer)) {
             currentplayer = players.get(0);
             currentplayer.setColor(new Color(193,23,120));
+        }
+        checkWinner();
+    }
+    
+    /**
+     * Checks to see who has won the game, if anyone has
+     */
+    public void checkWinner() {
+        if(players.size() == 1) {
+            winner.setText("You won, " + players.get(0).getName() +"!");
+            winner.setVisible(true);
         }
     }
     
@@ -109,7 +124,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
             player.addMouseListener(this);
             players.add(player);
             addPlayerToRoom(player.getRoom(),player);
-            currentPositionX = 0;//change to be related to cell/jpanel
+            currentPositionX = 0;
             currentPositionY = 0;
         }
         currentplayer = players.get(0);
@@ -117,14 +132,12 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     }
     
     /**
-     * 
+     * Allows the current player to challenge another to a game
+     * @param p - Player to be challenged
      */
     public void challengePlayer(Player p) {
         challenger = p;
         challenge.setVisible(true);
-        for(Player player : players) {
-            System.out.println("Players: " + player.getName());
-        }
     }
     
     /**
@@ -147,19 +160,17 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
      */
     public void finishHim() {
         switch(rpsResult) {
-            case 0:
-                //do nothing
+            case 0: //do nothing
                 break;
             case 1:
-                //current player won, remove p
+                //current player won, remove challenger
                 removePlayer(challenger);
                 break;
             case -1:
                 //current player lost, remove currentplayer
                 removePlayer(currentplayer);
                 break;
-            default:
-                //do nothing
+            default: //do nothing
                 break;
         }
     }
@@ -182,7 +193,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         this.requestFocus();
         if((e.getSource()) instanceof Player) {
             currentplayer.setDefaultColor();
-            currentplayer = (Player) (e.getSource());//assign currentplayer to player clicked
+            currentplayer = (Player) (e.getSource());
             currentPositionX = currentplayer.getX();
             currentPositionY = currentplayer.getY();
             currentplayer.setToSelectColor();
