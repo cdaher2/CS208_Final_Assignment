@@ -4,6 +4,8 @@
  * the player's name and timestamp, thus allowing for two players to have the same name.
  * 
  * @author Christian Daher
+ * @param <K> key
+ * @param <V> value
  */
 
 public class MHashTable<K, V>{
@@ -52,20 +54,16 @@ public class MHashTable<K, V>{
      */
     public void put(K k, V v) {
         int i = k.hashCode() % CAPACITY;
-        if (master[i] == null) {
-            master[k.hashCode() % CAPACITY] = new Node<K, V>(k, v);
-        }
-        else {
-            boolean f = true;
-            while (f) {
-                if (master[i] == null) {
-                    f = false;
-                    master[i] = new Node<K, V>(k, v);
-                }
-                i++;
+        boolean f = true;
+        while (f) {
+            if (master[i] == null) {
+                f = false;
+                master[i] = new Node<K, V>(k, v);
             }
+            i++;
         }
     }
+    
     
     
     /**
