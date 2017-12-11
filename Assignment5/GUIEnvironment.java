@@ -1,19 +1,19 @@
 import java.awt.*;
 import java.util.HashMap;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.*;
 import java.awt.event.*;
 /**
  * All GUI elements go here.
+ * Manages the Players and the Rooms they are in and how they move around
  *
  * @author (Catherine Denis)
  * @version (0.1)
  */
 public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
 {
-    private Random random;
     private Container contents;
     private HashMap<Player, Integer> map;
     private ArrayList<Room> rooms;
@@ -33,7 +33,6 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
      */
     public GUIEnvironment()
     {
-        random = new Random();
         map = new HashMap<Player, Integer>();
         rooms = new ArrayList<Room>();
         players = new ArrayList<Player>();
@@ -47,14 +46,17 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     public void createEnvironment()
     {
         contents = getContentPane();
-        contents.setLayout(new GridLayout(3,3));
+        contents.setLayout(null);
+        JPanel container = new JPanel();
+        container.setLayout(new GridLayout(3,3));
+        container.setSize(300,300);
         for(int i = 0; i< 9; i++) {
             Room panel = new Room(i);
             panel.setLayout(null);
             panel.addMouseListener(this);
             panel.setBackground(colors[i]);
             rooms.add(panel);
-            contents.add(panel);
+            container.add(panel);
         }
         
         challenge = new JButton("Challenge");
@@ -65,12 +67,15 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         challenge.setVisible(false);
         fillRoomsWithPlayers();
         
-            winner = new JLabel();
-            winner.setSize(100,20);
-            rooms.get(4).add(winner);
+        winner = new JLabel();
+        winner.setSize(100,20);
+        winner.setBackground(Color.WHITE);
+        winner.setLocation(100,130);
+        contents.add(winner);
         
+        contents.add(container);
         addKeyListener(this);
-        setSize(300, 300);
+        setSize(315, 335);
         setLocationRelativeTo(null); //Centers window
         setVisible(true);
     }
@@ -99,7 +104,6 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         
         if(p.equals(currentplayer)) {
             currentplayer = players.get(0);
-            currentplayer.setColor(new Color(193,23,120));
         }
         checkWinner();
     }
@@ -119,9 +123,11 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
      */
     public void fillRoomsWithPlayers()
     {
-        for(int i = 0; i < 5; i++) {
+        int rand = ThreadLocalRandom.current().nextInt(3, 10); 
+        for(int i = 0; i < rand; i++) {
             Player player = new Player("Player"+(i+1), i);
             player.addMouseListener(this);
+            player.setColor(new Color(30*i, 34 ,100));
             players.add(player);
             addPlayerToRoom(player.getRoom(),player);
             currentPositionX = 0;

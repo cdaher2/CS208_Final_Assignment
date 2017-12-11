@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=GUIEnvironment
-comment0.text=\r\n\ All\ GUI\ elements\ go\ here.\r\n\r\n\ @author\ (Catherine\ Denis)\r\n\ @version\ (0.1)\r\n
+comment0.text=\r\n\ All\ GUI\ elements\ go\ here.\r\n\ Manages\ the\ Players\ and\ the\ Rooms\ they\ are\ in\ and\ how\ they\ move\ around\r\n\r\n\ @author\ (Catherine\ Denis)\r\n\ @version\ (0.1)\r\n
 comment1.params=
 comment1.target=GUIEnvironment()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ GUIEnvironment\r\n
