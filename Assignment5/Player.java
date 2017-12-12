@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Date;
 /**
- * Write a description of class Player here.
+ * Player.
  *
  * @author (Catherine Denis) & Christian Daher
  * @version (0.1)
@@ -22,6 +22,8 @@ public class Player extends JPanel
     private Color selectcolor = new Color(34,121,23);
     /**
      * Constructor for objects of class Player
+     * Starts in the first room
+     * Set to default color
      */
     public Player()
     {
@@ -163,6 +165,9 @@ public class Player extends JPanel
         drawAThing(g);
     }
     
+    /**
+     * Creates the hashcode for player
+     */
     private void makeHash() {
         hash = 1;
         for (int i = 0; i < this.getName().length(); i++) {
@@ -171,6 +176,10 @@ public class Player extends JPanel
         hash = Math.abs(hash);
     }
     
+    /**
+     * Returns the hashcode for this player
+     * @return hash - hashcode calculated for player
+     */
     @Override
     public int hashCode() {
         return hash;

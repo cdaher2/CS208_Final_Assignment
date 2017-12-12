@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=Player
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Player\ here.\r\n\r\n\ @author\ (Catherine\ Denis)\ &\ Christian\ Daher\r\n\ @version\ (0.1)\r\n
+comment0.text=\r\n\ Player.\r\n\r\n\ @author\ (Catherine\ Denis)\ &\ Christian\ Daher\r\n\ @version\ (0.1)\r\n
 comment1.params=
 comment1.target=Player()
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Player\r\n
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Player\r\n\ Starts\ in\ the\ first\ room\r\n\ Set\ to\ default\ color\r\n
 comment10.params=
 comment10.target=void\ setToSelectColor()
 comment10.text=\r\n\ Sets\ the\ player's\ color\ to\ the\ default\ select\ color\r\n
@@ -27,8 +27,10 @@ comment16.target=void\ paintComponent(java.awt.Graphics)
 comment16.text=\r\n\ Paints\ the\ graphical\ components\ of\ Resizable\ Circle\r\n\ @param\ g\ -\ Graphical\ element\r\n
 comment17.params=
 comment17.target=void\ makeHash()
+comment17.text=\r\n\ Creates\ the\ hashcode\ for\ player\r\n
 comment18.params=
 comment18.target=int\ hashCode()
+comment18.text=\r\n\ Returns\ the\ hashcode\ for\ this\ player\r\n\ @return\ hash\ -\ hashcode\ calculated\ for\ player\r\n
 comment19.params=play
 comment19.target=boolean\ equals(Player)
 comment19.text=\r\n\ Returns\ whether\ or\ not\ this\ player\ is\ the\ same\ as\ another\ player\r\n\ @return\ -\ boolean\ value\ true\ or\ false\r\n

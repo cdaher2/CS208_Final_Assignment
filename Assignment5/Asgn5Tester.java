@@ -1,8 +1,9 @@
 
-public class Asgn5 {
+public class Asgn5Tester {
     public static void main(String[] args) throws InterruptedException {
     	GUIEnvironment g = new GUIEnvironment();
     	RockPaperScissors rps = new RockPaperScissors(g);
+    	
     	MHashTable<Player, Player> mh = new MHashTable();
     	Player p1 = new Player("Andre", 0);
     	Player p2 = new Player("Charles", 0);
@@ -27,9 +28,9 @@ public class Asgn5 {
         Room room2 = new Room(1);
         Room room3 = new Room(2);
         
-        System.out.println("Room 1: " + room1.getNumber());
-        System.out.println("Room 2: " + room2.getNumber());
-        System.out.println("Room 3: " + room3.getNumber());
+        System.out.println("Room 1: " + room1.getNumber() + room1.hashCode());
+        System.out.println("Room 2: " + room2.getNumber() + room2.hashCode());
+        System.out.println("Room 3: " + room3.getNumber() + room3.hashCode());
         
         hTable.put(player1, room1);
         hTable.put(player2, room2);

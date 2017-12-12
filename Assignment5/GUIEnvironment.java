@@ -91,6 +91,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     
     /**
      * Eradicates a player from existance
+     * @param p - Player to remove
      */
     public void removePlayer(Player p) {
         iter = players.iterator();
@@ -119,7 +120,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     }
     
     /**
-     * Creates 5 players and adds them to rooms
+     * Creates a random amount players (3 to 9) and adds them to rooms
      */
     public void fillRoomsWithPlayers()
     {
@@ -197,6 +198,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
     @Override
     public void mouseClicked(MouseEvent e) {
         this.requestFocus();
+        //Switch current player to player clicked on
         if((e.getSource()) instanceof Player) {
             currentplayer.setToDefaultColor();
             currentplayer = (Player) (e.getSource());
@@ -205,6 +207,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
             currentplayer.setToSelectColor();
             repaint();
         }
+        //Switch current player to room clicked
         if((e.getSource()) instanceof Room) {
             currentRoom = (Room) (e.getSource());
             (rooms.get(currentplayer.getRoom())).remove(currentplayer);
@@ -213,7 +216,7 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
             detectPlayersInRange();
             repaint();
         }
-        
+        //Start game if the button is clicked
         if((e.getSource()).equals(challenge)) {
             RockPaperScissors rps = new RockPaperScissors(this);
             challenge.setVisible(false);
@@ -241,13 +244,13 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
             currentPositionY = currentPositionY - 5;
             //needs to have boundaries
             currentplayer.setY(currentPositionY);
-            currentplayer.setBounds(currentplayer.getX(),currentplayer.getY(),20,20);
+            currentplayer.setLocation(currentplayer.getX(),currentplayer.getY());
             repaint();
         }
         else if(keyCode == KeyEvent.VK_D) {
             currentPositionX = currentPositionX + 5;
             currentplayer.setX(currentPositionX);
-            currentplayer.setBounds(currentplayer.getX(),currentplayer.getY(),20,20);
+            currentplayer.setLocation(currentplayer.getX(),currentplayer.getY());
             repaint();
         }
         else {
@@ -256,13 +259,13 @@ public class GUIEnvironment extends JFrame implements KeyListener, MouseListener
         if(keyCode == KeyEvent.VK_A) {
             currentPositionX = currentPositionX - 5;
             currentplayer.setX(currentPositionX);
-            currentplayer.setBounds(currentplayer.getX(),currentplayer.getY(),20,20);
+            currentplayer.setLocation(currentplayer.getX(),currentplayer.getY());
             repaint();
         }
         else if(keyCode == KeyEvent.VK_S) {
             currentPositionY = currentPositionY + 5;
             currentplayer.setY(currentPositionY);
-            currentplayer.setBounds(currentplayer.getX(),currentplayer.getY(),20,20);
+            currentplayer.setLocation(currentplayer.getX(),currentplayer.getY());
             repaint();
         }
         else {
