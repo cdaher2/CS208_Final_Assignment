@@ -10,13 +10,13 @@
 
 public class MHashTable<K, V>{
 	
-	/**
-	 * A simple Node data class containing generic fields for keys and values
-	 * @author Christian Daher
-	 *
-	 * @param <K> key
-	 * @param <V> value
-	 */
+    /**
+     * A simple Node data class containing generic fields for keys and values
+     * @author Christian Daher
+     *
+     * @param <K> key
+     * @param <V> value
+     */
     protected static class Node<K, V> {
         public int key;
         public V value;
@@ -63,8 +63,6 @@ public class MHashTable<K, V>{
             i++;
         }
     }
-    
-    
     
     /**
      * Takes a key and returns the corresponding value

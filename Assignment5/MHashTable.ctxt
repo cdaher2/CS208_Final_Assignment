@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=MHashTable
-comment0.text=\r\n\ MHashTable.java\r\n\ A\ Hashtable\ class\ for\ storing\ Player\ instances.\ Hashes\ should\ be\ stored\ as\ Strings,\ and\ are\ generated\ from\ a\ combination\ of\ \r\n\ the\ player's\ name\ and\ timestamp,\ thus\ allowing\ for\ two\ players\ to\ have\ the\ same\ name.\r\n\ \r\n\ @author\ Christian\ Daher\r\n
+comment0.text=\r\n\ MHashTable.java\r\n\ A\ Hashtable\ class\ for\ storing\ Player\ instances.\ Hashes\ should\ be\ stored\ as\ Strings,\ and\ are\ generated\ from\ a\ combination\ of\ \r\n\ the\ player's\ name\ and\ timestamp,\ thus\ allowing\ for\ two\ players\ to\ have\ the\ same\ name.\r\n\ \r\n\ @author\ Christian\ Daher\r\n\ @param\ <K>\ key\r\n\ @param\ <V>\ value\r\n
 comment1.params=
 comment1.target=MHashTable()
 comment1.text=\r\n\ Initializes\ the\ master\ array\ with\ the\ default\ capacity\r\n

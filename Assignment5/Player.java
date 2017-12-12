@@ -113,6 +113,7 @@ public class Player extends JPanel
     public void setToSelectColor() {
         color = selectcolor;
     }
+    
     /**
      * Returns the x-coordinate of the player
      */

@@ -11,7 +11,6 @@ public class Room extends JPanel
     private int hash;
     private int timestamp = (int)new Date().getTime();
     private int number;
-    //private MHashTable<Player> hTable;
     
     /**
      * Constructor for objects of class Room
